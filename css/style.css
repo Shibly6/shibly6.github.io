@@ -1669,3 +1669,17 @@ figure.dotted-bg {
       .site-footer .social li a:hover {
         background: #36a1ff;
         color: #ffffff; }
+
+
+        #navbar {
+          position: sticky;
+          top: 0; /* Adjust as needed to ensure it stays at the top */
+          z-index: 1000; /* Ensures it appears above other content */
+          /* background-color: #fff; /* Optional: Prevent transparency when scrolling */
+          /*opacity: 0.5; */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+        }
+        
+        .site-footer-p {
+            padding: 0px 20px 0px 20px;
+        }
