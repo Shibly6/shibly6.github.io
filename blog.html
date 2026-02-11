@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cybersecurity blog by Noor Elahi Ali Shibly - Security research, vulnerability analysis, and technical write-ups.">
+    <title>Blog | Noor Elahi Ali Shibly</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+
+<body>
+    <!-- Navigation - Same as main site -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-bracket">[</span>
+                <span class="logo-text">Noor Elahi Ali Shibly</span>
+                <span class="logo-bracket">]</span>
+            </a>
+
+            <!-- Full navbar: Home, About, Experience, Projects, Skills, Blog, Contact -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link nav-cta">Contact</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">
+                <span class="comment">// </span>BLOG
+            </h1>
+            <p class="blog-subtitle">
+                Security research, vulnerability analysis, and technical write-ups
+            </p>
+        </div>
+    </header>
+
+    <!-- Blog Content -->
+    <main class="blog-main">
+        <div class="container">
+            <!-- Category Filter Buttons -->
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="vulnerability">Vulnerabilities</button>
+                <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+                <button class="filter-btn" data-filter="writeup">Write-ups</button>
+                <button class="filter-btn" data-filter="others">Others</button>
+            </div>
+
+            <!-- Blog Posts Grid - Cards maintain consistent layout -->
+            <div class="blog-grid">
+                <!-- Post 1: CVE Analysis -->
+                <article class="blog-card" data-category="vulnerability" data-tags="next.js,cve,web security">
+                    <!-- Thumbnail Image Example -->
+                    <img src="blog/assets/images/cve-2025-29927/thumbnail.jpg" class="blog-card-image" alt="CVE Analysis Thumbnail">
+
+                    <div class="blog-card-header">
+                        <span class="blog-category critical">CVE Analysis</span>
+                        <span class="blog-date">
+                            <i class="fas fa-calendar"></i> Jan 20, 2026
+                        </span>
+                    </div>
+                    <h2 class="blog-card-title">
+                        <a href="blog/cve-2025-29927.html">CVE-2025-29927: Next.js Middleware Authorization Bypass</a>
+                    </h2>
+                    <p class="blog-card-excerpt">
+                        Deep dive into the critical Next.js middleware vulnerability that allows attackers
+                        to bypass authorization checks. Includes exploitation walkthrough and mitigation strategies.
+                    </p>
+
+                    <a href="blog/cve-2025-29927.html" class="blog-card-link">
+                        Read more <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+
+                
+                <!-- Post 2: WhatsApp Scammer Experience -->
+                <article class="blog-card" data-category="others" data-tags="social engineering,scam,awareness">
+                    <!-- Thumbnail Image -->
+                    <img src="blog/assets/images/scammer-experience/thumbnail.jpg" class="blog-card-image" alt="WhatsApp Scam Awareness">
+
+                    <div class="blog-card-header">
+                        <span class="blog-category others">Others</span>
+                        <span class="blog-date">
+                            <i class="fas fa-calendar"></i> Jun 20, 2025
+                        </span>
+                    </div>
+                    <h2 class="blog-card-title">
+                        <a href="blog/fake-police-scammer-experience.html">How I Caught a Fake Police Scammer Targeting My Family</a>
+                    </h2>
+                    <p class="blog-card-excerpt">
+                        A real-life encounter with a WhatsApp scammer pretending to be a police officer. 
+                        Learn how social engineering attacks work and practical tips to protect yourself from fake police scams.
+                    </p>
+
+                    <a href="blog/fake-police-scammer-experience.html" class="blog-card-link">
+                        Read more <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="comment">// </span>
+                &copy; 2026 Noor Elahi Ali Shibly. Built with
+                <i class="fas fa-heart" style="color: var(--accent);"></i>
+                and caffeine.
+            </p>
+            <p class="footer-note">Securing systems, one vulnerability at a time.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        /**
+         * Blog Category Filtering
+         * 
+         * Layout Stability: This script ONLY uses display:none to hide/show cards.
+         * It does NOT:
+         * - Rebuild HTML
+         * - Replace innerHTML
+         * - Clone or create new DOM elements
+         * - Change card styles, sizes, or grid layout
+         * 
+         * The grid layout is controlled entirely by CSS (.blog-grid).
+         * Cards maintain their exact styling regardless of filter state.
+         */
+        (function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // 1. Update active button (visual feedback)
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 2. Get selected filter
+                    const filter = this.getAttribute('data-filter');
+
+                    // 3. Show/hide cards using display property only
+                    blogCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+
+                        if (filter === 'all' || category === filter) {
+                            // Show card - restore default flex display
+                            card.style.display = '';
+                        } else {
+                            // Hide card - use display:none
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
