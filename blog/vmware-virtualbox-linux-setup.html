@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to set up VMware Workstation Pro or VirtualBox on Windows to run Linux in a virtual machine — perfect for cybersecurity, DevOps, and cloud beginners.">
+    <meta name="keywords" content="VMware Workstation Pro, VirtualBox, Linux virtual machine, Broadcom download, cybersecurity lab setup, DevOps Linux, virtualization Windows">
+    <title>How to Set Up a Linux Virtual Machine on Windows Using VMware or VirtualBox | Noor Elahi Ali Shibly</title>
+
+    <!-- Structured Data (Schema.org) for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "How to Set Up a Linux Virtual Machine on Windows Using VMware or VirtualBox",
+            "image": [
+                "assets/images/vmware-virtualbox-linux-setup/thumbnail.jpg"
+            ],
+            "datePublished": "2026-02-22T08:00:00+06:00",
+            "dateModified": "2026-02-22T08:00:00+06:00",
+            "author": [{
+                "@type": "Person",
+                "name": "Noor Elahi Ali Shibly",
+                "url": "https://noorelahialishibly.com/index.html"
+            }],
+            "keywords": "VMware Workstation Pro, VirtualBox, Linux virtual machine, Broadcom download, cybersecurity lab, DevOps, virtualization",
+            "description": "Learn how to set up VMware Workstation Pro or VirtualBox on Windows to run Linux in a virtual machine — perfect for cybersecurity, DevOps, and cloud beginners."
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZE0S2SR2D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YZE0S2SR2D');
+    </script>
+
+</head>
+
+<body>
+    <!-- Navigation - Same as main site (DO NOT MODIFY) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-bracket">[</span>
+                <span class="logo-text">Noor Elahi Ali Shibly</span>
+                <span class="logo-bracket">]</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../index.html#contact" class="nav-link nav-cta">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="post-header">
+        <div class="container">
+            <div class="post-meta">
+                <span class="blog-category tutorial">Tutorial</span>
+                <span class="blog-date">
+                    <i class="fas fa-calendar"></i> February 22, 2026
+                </span>
+                <span class="blog-date">
+                    <i class="fas fa-clock"></i> 5 min read
+                </span>
+            </div>
+            <h1 class="post-title">How to Set Up a Linux Virtual Machine on Windows Using VMware or VirtualBox</h1>
+            <div class="post-tags">
+                <span class="tag">Virtualization</span>
+                <span class="tag">Linux</span>
+                <span class="tag">VMware</span>
+                <span class="tag">VirtualBox</span>
+                <span class="tag">Cybersecurity</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <main class="section">
+        <article class="post-content">
+
+            <p>
+                According to StatCounter, over 69% of desktop users worldwide run Windows. But if you're serious about
+                breaking into <strong>cybersecurity, cloud computing, server management, or DevOps</strong>, Linux is
+                not optional — it's inevitable. At some point, whether from day one or somewhere along the way, you
+                will need to work with Linux.
+            </p>
+
+            <p>
+                For most people, completely abandoning Windows for Linux overnight isn't realistic. That's where
+                <strong>virtualization</strong> comes in. Tools like <strong>VMware Workstation Pro</strong> and
+                <strong>VirtualBox</strong> let you run a fully isolated Linux environment inside Windows, so you can
+                learn at your own pace without disrupting your daily workflow.
+            </p>
+
+            <div class="alert info">
+                <strong>ℹ️ Note:</strong> Both VMware Workstation Pro and VirtualBox are free for personal use. This
+                guide covers how to download and set up both so you can choose the one that works best for you.
+            </div>
+
+            <h2>Downloading VMware Workstation Pro</h2>
+
+            <p>
+                In 2023, Broadcom acquired VMware and subsequently shifted its business model — moving away from retail
+                software sales toward high-value enterprise subscriptions. As a result, VMware Workstation Pro is now
+                <strong>free for personal use</strong>, but the download process requires a Broadcom account. Here's
+                how to get it.
+            </p>
+
+            <h3>Step 1: Create or Log In to Your Broadcom Account</h3>
+            <p>
+                If you already have a Broadcom account, head over to the
+                <strong><a href="https://access.broadcom.com/default/ui/v1/signin/" target="_blank" rel="noopener">Broadcom
+                    login page</a></strong>. If not, <strong><a href="https://profile.broadcom.com/web/registration" target="_blank"
+                    rel="noopener">register here</a></strong> first, then log in.
+            </p>
+
+            <p>Once logged in, you'll be greeted with the Broadcom dashboard:</p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/01-broadcom-dashboard.png"
+                    alt="Broadcom dashboard after login showing the main navigation panel">
+                <figcaption>// Figure 1: Broadcom dashboard after successful login</figcaption>
+            </figure>
+
+            <h3>Step 2: Navigate to My Downloads</h3>
+            <p>
+                Click on <strong>My Downloads</strong> in the left sidebar. This section gives you access to all
+                software available under your account, including the free personal-use tools.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/02-my-downloads-section.png"
+                    alt="Broadcom My Downloads section in the left navigation panel">
+                <figcaption>// Figure 2: My Downloads section in the Broadcom portal</figcaption>
+            </figure>
+
+            <h3>Step 3: Access Free Software</h3>
+            <p>
+                Look for the option to view Broadcom's free software offerings and click it. You'll see a list of
+                available tools at no cost:
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/03-broadcom-free-software-list.png"
+                    alt="Broadcom free software list showing VMware Workstation Pro and other tools">
+                <figcaption>// Figure 3: Broadcom free software list</figcaption>
+            </figure>
+
+            <h3>Step 4: Select VMware Workstation Pro</h3>
+            <p>
+                From the list, select <strong>VMware Workstation Pro</strong>. You'll then be prompted to choose a
+                version.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/04-vmware-version-selection.png"
+                    alt="VMware Workstation Pro version selection screen showing 17.5.x and 25H2 options">
+                <figcaption>// Figure 4: VMware version selection</figcaption>
+            </figure>
+
+            <div class="alert warning">
+                <strong>⚠️ Which version should you pick?</strong> VMware <strong>25H2</strong> is the latest release
+                and includes hardware support for newer processors (Intel Lunar Lake, Arrow Lake), but it has several
+                known bugs. <strong>Version 17.6.x</strong> is the stable, battle-tested choice for everyday use. If
+                you don't specifically need the latest hardware support, stick with 17.6.x.
+            </div>
+
+            <p>
+                For reliability, I went with version 17. Here's what the download screen looks like:
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/05-vmware-download-screen.png"
+                    alt="VMware Workstation Pro 17 download screen on Broadcom portal">
+                <figcaption>// Figure 5: VMware Workstation Pro 17 download screen</figcaption>
+            </figure>
+
+            <h3>Step 5: Accept the Terms and Conditions</h3>
+            <p>
+                Click the <strong>Terms and Conditions</strong> link to open the agreement — this action also enables
+                the checkbox so you can actually agree to it. Once you've read and accepted, you'll be prompted to
+                confirm:
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/06-terms-and-conditions.png"
+                    alt="VMware terms and conditions agreement checkbox on Broadcom download portal">
+                <figcaption>// Figure 6: Accepting the terms and conditions</figcaption>
+            </figure>
+
+            <p>Click <strong>Yes</strong> to proceed.</p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/07-confirm-yes.png"
+                    alt="Confirmation dialog asking the user to confirm agreement to VMware terms">
+                <figcaption>// Figure 7: Confirming the agreement</figcaption>
+            </figure>
+
+            <h3>Step 6: Fill in the Compliance Form</h3>
+            <p>
+                Broadcom requires a short compliance form before allowing the download. Fill it out accurately:
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/08-compliance-form.png"
+                    alt="Broadcom compliance form required before downloading VMware Workstation Pro">
+                <figcaption>// Figure 8: Compliance form</figcaption>
+            </figure>
+
+            <h3>Step 7: Download the Installer</h3>
+            <p>
+                Finally, click the <strong>Download</strong> button to grab the installer:
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/09-download-button.png"
+                    alt="Download button for VMware Workstation Pro on the Broadcom portal">
+                <figcaption>// Figure 9: Initiating the download</figcaption>
+            </figure>
+
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+            <h2>Downloading VirtualBox</h2>
+
+            <p>
+                If Broadcom's multi-step process felt like a bit much, you'll appreciate Oracle's approach with
+                VirtualBox. No accounts, no compliance forms, no friction.
+            </p>
+            <p>
+                Simply visit the official
+                <strong><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank"
+                    rel="noopener">VirtualBox Downloads page</a></strong>
+                and click the link that matches your operating system. That's it.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/10-virtualbox-download-page.png"
+                    alt="VirtualBox official download page showing options for Windows, macOS, and Linux">
+                <figcaption>// Figure 10: VirtualBox download page — pick your OS and go</figcaption>
+            </figure>
+
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+            <h2>VMware vs VirtualBox: Which Should You Choose?</h2>
+
+            <p>
+                The popular YouTuber <strong>NetworkChuck</strong> frequently recommends VMware Workstation Pro as the
+                top pick for performance — especially now that it's free for personal use. He uses it regularly in his
+                tutorials because it tends to handle heavier workloads and 3D acceleration more efficiently than
+                VirtualBox.
+            </p>
+
+            <p>
+                That said, in my personal experience, the difference in day-to-day usage isn't dramatic. For learning
+                Linux, running CTF environments, or basic lab work, both tools get the job done well. Here's a quick
+                breakdown:
+            </p>
+
+            <ul>
+                <li><strong>VMware Workstation Pro</strong> — Better performance for heavy workloads, smoother 3D
+                    support, more polished UI. Slightly more complex to download (Broadcom account required).</li>
+                <li><strong>VirtualBox</strong> — Open-source, dead simple to install, cross-platform, and perfect for
+                    most learning scenarios. Oracle's download is hassle-free.</li>
+            </ul>
+
+            <div class="alert info">
+                <strong>ℹ️ My Take:</strong> Start with whichever you can get running faster. Both are excellent for
+                learning. You can always switch later once you know what you actually need.
+            </div>
+
+            <h2>Conclusion</h2>
+            <p>
+                Whether you're stepping into cybersecurity, DevOps, or cloud computing, having a Linux environment
+                ready on your Windows machine is an essential first step. VMware Workstation Pro and VirtualBox both
+                give you a safe, isolated space to experiment — without touching your main system. The download process
+                for VMware is a bit involved thanks to Broadcom's portal, but once you're through it, you've got a
+                powerful tool at your disposal for free. VirtualBox remains the no-hassle alternative that's more than
+                capable for most use cases.
+            </p>
+            <p>
+                In a follow-up post, I'll walk through actually installing a Linux distro (like Ubuntu or Kali) inside
+                one of these hypervisors. Stay tuned.
+            </p>
+
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <a href="../blog.html">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <a href="../blog/cve-2025-29927.html">
+                    Next Post <i class="fas fa-arrow-right"></i>
+                </a>
+            </nav>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="comment">// </span>
+                &copy; 2026 Noor Elahi Ali Shibly. Built with
+                <i class="fas fa-heart" style="color: var(--accent);"></i>
+                and caffeine.
+            </p>
+            <p class="footer-note">Securing systems, one vulnerability at a time.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
