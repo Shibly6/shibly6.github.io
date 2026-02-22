@@ -1096,8 +1096,10 @@ strong {
 
     .about-image {
         float: none;
-        max-width: 200px;
-        margin: 0 auto var(--spacing-lg) auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 var(--spacing-lg) 0;
+        border-radius: 0;
     }
 
     .about-stats {
