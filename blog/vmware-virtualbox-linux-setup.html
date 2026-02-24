@@ -86,7 +86,7 @@
                     <i class="fas fa-calendar"></i> February 22, 2026
                 </span>
                 <span class="blog-date">
-                    <i class="fas fa-clock"></i> 5 min read
+                    <i class="fas fa-clock"></i> 15 min read
                 </span>
             </div>
             <h1 class="post-title">How to Set Up a Linux Virtual Machine on Windows Using VMware or VirtualBox</h1>
@@ -283,6 +283,402 @@
                 <strong>ℹ️ My Take:</strong> Start with whichever you can get running faster. Both are excellent for
                 learning. You can always switch later once you know what you actually need.
             </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+            <h2>Hands-on: Installing Your First Linux VM (Debian 10)</h2>
+
+            <p>
+                Now that you have your hypervisor ready, it's time to put it to work. We aren't just installing Linux to browse the web; in the world of cybersecurity, we often build <strong>"Lab Machines."</strong> 
+            </p>
+            <p>
+                For this guide, we will install <strong>Debian 10</strong>. Why an older version? Because it contains specific legacy behaviors (and vulnerabilities) that make it a perfect "Victim Machine" for practicing exploitation—specifically a Telnet vulnerability we'll explore in a future post.
+            </p>
+
+            <h3>Step 1: Download the ISO</h3>
+            <p>
+                First, grab the Debian 10 disk image (ISO). For this lab, we need the <code>amd64-DVD-1.iso</code>.
+            </p>
+            <p>
+                <strong>Download Link:</strong> <a href="https://cdimage.debian.org/cdimage/archive/10.13.0/amd64/iso-dvd/" target="_blank">Debian 10.13.0 Archive</a>
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/11-debian-iso-download.png" alt="Debian ISO download page">
+                <figcaption>// Figure 11: Selecting the correct Debian ISO</figcaption>
+            </figure>
+
+            <h3>Step 2: Create a New Virtual Machine</h3>
+            <p>
+                Open VMware Workstation Pro and click <strong>Create a New Virtual Machine</strong>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/12-create-new-vm.png" alt="Create new VM in VMware">
+                <figcaption>// Figure 12: Starting a new virtual machine</figcaption>
+            </figure>
+
+            <p>
+                Choose the <strong>Typical</strong> configuration—it’s the fastest way to get up and running without getting bogged down in advanced hardware specs.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/13-typical-config.png" alt="VMware typical configuration">
+                <figcaption>// Figure 13: Selecting Typical configuration</figcaption>
+            </figure>
+
+            <p>
+                When prompted for the installer disk, browse and select the Debian ISO you just downloaded.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/14-select-iso.png" alt="Selecting the Debian ISO">
+                <figcaption>// Figure 14: Pointing to the downloaded ISO</figcaption>
+            </figure>
+
+            <p>
+                Give your VM a descriptive name like <code>Debian-10-Lab</code> and choose where to store it.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/15-name-location.png" alt="VM name and location">
+                <figcaption>// Figure 15: Naming the virtual machine</figcaption>
+            </figure>
+
+            <p>
+                Allocate at least <strong>20 GB</strong> of disk space. The default is fine for our purposes.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/16-disk-size.png" alt="Disk size setting">
+                <figcaption>// Figure 16: Setting the disk size to 20 GB</figcaption>
+            </figure>
+
+            <p>
+                Before finishing, click <strong>Customize Hardware...</strong> to adjust the network.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/17-customize-hardware.png" alt="Customize Hardware button">
+                <figcaption>// Figure 17: Opening hardware settings</figcaption>
+            </figure>
+
+            <div class="alert info">
+                <strong>Network Tip:</strong> In the "Customize Hardware" settings, set your Network Adapter to <strong>VMnet1 (Host-only)</strong> if you want this VM to be isolated from the internet but reachable by your host, or <strong>Bridged</strong> if you want it to act like a real device on your local network.
+            </div>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/18-network-adapter.png" alt="Network adapter settings">
+                <figcaption>// Figure 18: Choosing the network mode</figcaption>
+            </figure>
+
+            <p>
+                Click <strong>Finish</strong> to create the VM.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/19-finish.png" alt="Finish VM creation">
+                <figcaption>// Figure 19: Completing the VM setup</figcaption>
+            </figure>
+
+            <h3>Step 3: Start the Installation</h3>
+            <p>
+                Power on the VM. When the boot menu appears, select <strong>Graphical Install</strong>. This provides a user-friendly interface for the setup.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/20-graphical-install.png" alt="Debian Graphical Install menu">
+                <figcaption>// Figure 20: Starting the Graphical Installation</figcaption>
+            </figure>
+
+            <p>
+                Follow the prompts to select your <strong>Language</strong> (English), <strong>Location</strong> (United States), and <strong>Keyboard</strong> (American English). 
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/21-language.png" alt="Language selection">
+                <figcaption>// Figure 21: Choosing the installer language</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/22-location.png" alt="Location selection">
+                <figcaption>// Figure 22: Setting your location</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/23-keyboard.png" alt="Keyboard layout">
+                <figcaption>// Figure 23: Selecting keyboard layout</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/24-keyboard-continue.png" alt="Keyboard confirmation">
+                <figcaption>// Figure 24: Confirming keyboard settings</figcaption>
+            </figure>
+
+            <h3>Step 4: Network and User Configuration</h3>
+            <p>
+                When configuring the network, if it asks for a "default route" and you are in an isolated lab, select <strong>No</strong>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/25-network-no-default.png" alt="No default route">
+                <figcaption>// Figure 25: Skipping default route configuration</figcaption>
+            </figure>
+            <p>
+                If it later prompts for an IP address, just click <strong>Go Back</strong> — we don't need advanced network setup now.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/26-network-go-back.png" alt="Go Back option">
+                <figcaption>// Figure 26: Returning to the main menu</figcaption>
+            </figure>
+            <p>
+                Then select <strong>Continue</strong> to let it autoconfigure.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/27-network-continue.png" alt="Continue with autoconfig">
+                <figcaption>// Figure 27: Proceeding with automatic network configuration</figcaption>
+            </figure>
+            <p>
+                The installer will attempt IPv6 autoconfiguration — this is normal.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/28-ipv6-autoconfig.png" alt="IPv6 autoconfiguration">
+                <figcaption>// Figure 28: IPv6 autoconfiguration in progress</figcaption>
+            </figure>
+
+            <p>
+                For the <strong>Hostname</strong>, I used <code>debian10</code>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/29-hostname.png" alt="Setting hostname">
+                <figcaption>// Figure 29: Entering the hostname</figcaption>
+            </figure>
+
+            <p>
+                For the <strong>Domain Name</strong>, I chose <code>telnet-vuln</code> to remind me of this machine's future purpose.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/30-domain-name.png" alt="Setting the domain name">
+                <figcaption>// Figure 30: Setting up the domain for our lab environment</figcaption>
+            </figure>
+
+            <p>
+                Set a strong <strong>Root Password</strong>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/31-root-password.png" alt="Root password">
+                <figcaption>// Figure 31: Creating the root password</figcaption>
+            </figure>
+
+            <p>
+                Next, create a standard user account. Enter the full name of the user.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/32-full-name.png" alt="User full name">
+                <figcaption>// Figure 32: Providing the user's full name</figcaption>
+            </figure>
+            <p>
+                Choose a username (e.g., <code>telnet-vuln-lab</code>).
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/33-username.png" alt="Username">
+                <figcaption>// Figure 33: Setting the username</figcaption>
+            </figure>
+            <p>
+                And set a password for that user.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/34-user-password.png" alt="User password">
+                <figcaption>// Figure 34: User account password</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/35-user-password-confirm.png" alt="Confirm password">
+                <figcaption>// Figure 35: Confirming the password</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/36-user-setup-continue.png" alt="User setup continue">
+                <figcaption>// Figure 36: Finishing user configuration</figcaption>
+            </figure>
+
+            <h3>Step 5: Partitioning and Finalizing</h3>
+            <p>
+                For partitioning, choose <strong>Guided - use entire disk</strong>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/37-partitioning-method.png" alt="Partitioning method">
+                <figcaption>// Figure 37: Selecting guided partitioning</figcaption>
+            </figure>
+            <p>
+                Select the virtual disk we created earlier.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/38-select-disk.png" alt="Select disk">
+                <figcaption>// Figure 38: Choosing the disk to partition</figcaption>
+            </figure>
+            <p>
+                When asked for the scheme, select <strong>All files in one partition</strong> (highly recommended for beginners).
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/39-partition-scheme.png" alt="Partition scheme">
+                <figcaption>// Figure 39: Choosing the partitioning scheme</figcaption>
+            </figure>
+            <p>
+                Finish the partitioning and confirm by selecting <strong>Yes</strong> to write changes to the disk.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/40-finish-partitioning.png" alt="Finish partitioning">
+                <figcaption>// Figure 40: Finalizing partition setup</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/41-write-changes.png" alt="Write changes to disk">
+                <figcaption>// Figure 41: Confirming to write changes</figcaption>
+            </figure>
+
+            <p>
+                The base system will now be installed.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/42-installing-base.png" alt="Installing base system">
+                <figcaption>// Figure 42: Base system installation in progress</figcaption>
+            </figure>
+
+            <p>
+                Once the "Base System" is installed, it may fail to find a "Package Manager" repository because we are using an archived version. <strong>Don't panic!</strong> Just click <strong>Continue</strong>. We will fix the repositories manually later.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/43-cannot-access-repo.png" alt="Cannot access repository">
+                <figcaption>// Figure 43: Repository error (expected)</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/44-updating-software.png" alt="Updating software">
+                <figcaption>// Figure 44: Software update attempt</figcaption>
+            </figure>
+
+            <p>
+                Choose <strong>No</strong> for the package usage survey.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/45-package-survey.png" alt="Package survey">
+                <figcaption>// Figure 45: Declining the package survey</figcaption>
+            </figure>
+
+            <p>
+                For the software selection, keep the defaults (unless you have specific preferences).
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/46-choose-software.png" alt="Software selection">
+                <figcaption>// Figure 46: Choosing desktop environment and tools</figcaption>
+            </figure>
+
+            <p>
+                Install the GRUB boot loader to the master boot record: <strong>Yes</strong>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/47-install-grub.png" alt="Install GRUB">
+                <figcaption>// Figure 47: Installing GRUB</figcaption>
+            </figure>
+            <p>
+                Select the device for boot loader installation: <code>/dev/sda</code> (the virtual disk).
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/48-boot-device.png" alt="Boot device selection">
+                <figcaption>// Figure 48: Choosing the disk for GRUB</figcaption>
+            </figure>
+
+            <p>
+                Installation complete! Click <strong>Continue</strong> to reboot.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/49-install-complete.png" alt="Installation complete">
+                <figcaption>// Figure 49: Installation finished</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/50-restart-continue.png" alt="Restart button">
+                <figcaption>// Figure 50: Rebooting the system</figcaption>
+            </figure>
+
+            <p>
+                When the system restarts, select <strong>Debian GNU/Linux</strong> from the boot menu.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/51-boot-select.png" alt="Boot menu">
+                <figcaption>// Figure 51: Booting into the new installation</figcaption>
+            </figure>
+
+            <p>
+                Log in with the user credentials you created.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/52-signin.png" alt="Login screen">
+                <figcaption>// Figure 52: Signing in</figcaption>
+            </figure>
+
+            <p>
+                Welcome to your Debian 10 desktop!
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/53-desktop.png" alt="Debian desktop">
+                <figcaption>// Figure 53: The GNOME desktop environment</figcaption>
+            </figure>
+
+            <h3>Step 6: Post-Installation Tweaks</h3>
+            <p>
+                To make the VM usable (proper screen resolution and mouse integration), we need to fix the repositories and install VM tools.
+            </p>
+            <p>
+                Open the <strong>Terminal</strong> from the Activities menu.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/54-terminal.png" alt="Opening terminal">
+                <figcaption>// Figure 54: Launching the terminal</figcaption>
+            </figure>
+
+            <p>
+                Switch to the root user:
+            </p>
+            <pre><code class="language-bash">sudo su -</code></pre>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/55-sudo-su.png" alt="sudo su command">
+                <figcaption>// Figure 55: Becoming root</figcaption>
+            </figure>
+
+            <p>
+                Edit the sources list:
+            </p>
+            <pre><code class="language-bash">nano /etc/apt/sources.list</code></pre>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/56-nano-sources.png" alt="nano sources.list">
+                <figcaption>// Figure 56: Opening the repository file</figcaption>
+            </figure>
+
+            <p>
+                Add these archive links (replace any existing content or add them at the top):
+            </p>
+            <pre><code class="language-bash">deb http://archive.debian.org/debian buster main contrib non-free
+deb http://archive.debian.org/debian-security buster/updates main</code></pre>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/57-adding-repo-links.png" alt="Adding repository lines">
+                <figcaption>// Figure 57: Adding the correct archive repositories</figcaption>
+            </figure>
+
+            <p>
+                Save the file by pressing <code>CTRL+X</code>, then <code>Y</code>, and <code>Enter</code>.
+            </p>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/58-ctrl-x.png" alt="CTRL+X to exit">
+                <figcaption>// Figure 58: Exiting nano</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/59-save-confirm.png" alt="Save confirmation">
+                <figcaption>// Figure 59: Confirming the save</figcaption>
+            </figure>
+
+            <p>
+                Finally, update the package list and install the VMware tools (which include drivers for better integration):
+            </p>
+            <pre><code class="language-bash">apt update && apt install open-vm-tools-desktop -y && reboot</code></pre>
+            <figure>
+                <img src="assets/images/vmware-virtualbox-linux-setup/60-install-vm-tools.png" alt="Installing open-vm-tools">
+                <figcaption>// Figure 60: Installing VMware tools</figcaption>
+            </figure>
+
+            <p>
+                After the reboot, your screen should resize automatically, and copy-paste between host and guest will work seamlessly.
+            </p>
+
+            <h2>Ready for Action</h2>
+            <p>
+                Congratulations! You now have a fully functional Linux lab environment running inside Windows. Whether you want to explore the command line, host a web server, or—as we will do next—test security vulnerabilities, you have a safe "sandbox" to play in. 
+            </p>
+            <p>
+                Next time, we’ll look into <strong>Kali Linux</strong> and <strong>Parrot OS</strong>, the heavy hitters of the cybersecurity world.
+            </p>
+                                
 
             <h2>Conclusion</h2>
             <p>
