@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- ============================================================
-         META TAGS - Essential for SEO and proper rendering
-         ============================================================ -->
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
@@ -15,46 +13,38 @@
 
     <title>Noor Elahi Ali Shibly | Cybersecurity Analyst</title>
 
-    <!-- Favicon -->
+    <!-- Favicons -->
     <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 
-    <!-- ============================================================
-         FONTS - Google Fonts for JetBrains Mono (headings) + Roboto (body)
-         ============================================================ -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
-    <!-- ============================================================
-         ICONS - Font Awesome for social icons and UI elements
-         ============================================================ -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- ============================================================
-         STYLESHEETS - Our custom CSS
-         ============================================================ -->
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZE0S2SR2D"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-YZE0S2SR2D');
+        gtag('config', 'G-YZE0S2SR2D');
     </script>
 </head>
 
 <body>
-    <!-- ============================================================
-         NAVIGATION - Fixed header with mobile hamburger menu
-         ============================================================ -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <!-- Logo/Name -->
@@ -82,12 +72,8 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-         HERO SECTION - Terminal-style introduction
-         ============================================================ -->
+    <!-- Hero -->
     <section id="home" class="hero">
-        <!-- Scanline overlay for retro CRT effect -->
-        <div class="scanlines"></div>
 
         <div class="hero-container">
             <!-- Terminal window decoration -->
@@ -99,43 +85,108 @@
                     <span class="terminal-title">shibly@security:~</span>
                 </div>
                 <div class="terminal-body">
-                    <p class="terminal-line">
-                        <span class="prompt">$</span> whoami
-                    </p>
-                    <h1 class="hero-name">
-                        <span class="typing-text" id="typed-name"></span>
-                        <span class="cursor">_</span>
-                    </h1>
-                    <h2 class="hero-title">Cybersecurity Analyst</h2>
+                    <!-- Glitch overlay for transitions -->
+                    <div class="terminal-glitch" id="terminal-glitch"></div>
 
-                    <p class="hero-summary">
-                        I’m a Software Engineering graduate with a major in Cybersecurity. I enjoy exploring how systems work, how they break, and how they can be made stronger. Through hands-on experience in vulnerability assessment and network analysis, I’ve developed a strong interest in understanding real-world threats and building more secure systems.
-                    </p>
+                    <!-- Cycling views container -->
+                    <div class="hero-views" id="hero-views">
+                        <!-- View 1: whoami (active by default) -->
+                        <div class="hero-view hero-intro active" id="hero-intro">
+                            <p class="terminal-line">
+                                <span class="prompt">$</span> <span id="typed-whoami"></span><span class="cursor cmd-cursor">_</span>
+                            </p>
+                            <div class="hero-name-wrap">
+                                <h1 class="hero-name"><span class="typing-text" id="typed-name"></span></h1><span class="cursor name-cursor">_</span>
+                            </div>
+                            <h2 class="hero-title">Cybersecurity Analyst</h2>
+                            <p class="hero-summary">
+                                I'm a Software Engineering graduate with a major in Cybersecurity. I enjoy exploring how
+                                systems
+                                work, how they break, and how they can be made stronger. Through hands-on experience in
+                                vulnerability assessment and network analysis, I've developed a strong interest in
+                                understanding
+                                real-world threats and building more secure systems.
+                            </p>
+                        </div>
 
-                    <!-- Social Links -->
-                    <div class="hero-links">
-                        <a href="tel:+8801739339099" class="hero-link" title="Phone">
-                            <i class="fas fa-phone"></i>
-                        </a>
-                        <a href="mailto:contact@noorelahialishibly.com" class="hero-link" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/shibly6" target="_blank" class="hero-link" title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/Shibly6" target="_blank" class="hero-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+                        <!-- View 2: latest_posts (hidden initially) -->
+                        <div class="hero-view hero-posts-view" id="hero-posts">
+                            <p class="terminal-line">
+                                <span class="prompt">$</span> <span id="typed-cmd"></span><span
+                                    class="cursor cmd-cursor">_</span>
+                            </p>
+                            <div class="hero-posts-list" id="hero-posts-list">
+                                <a href="blog/cve-2026-24061-telnet-bypass.html" class="hero-post-entry">
+                                    <img src="blog/assets/images/cve-2026-24061-telnet-bypass/thumbnail.jpg"
+                                        alt="CVE-2026-24061" class="hero-post-thumb">
+                                    <div class="hero-post-info">
+                                        <span class="hero-post-title">CVE-2026-24061: Telnet Auth Bypass &amp;
+                                            Mitigation</span>
+                                        <span class="hero-post-meta"><span class="hero-post-date">Apr 7, 2026</span> ·
+                                            <span class="hero-post-cat">CVE Analysis</span></span>
+                                    </div>
+                                    <i class="fas fa-chevron-right hero-post-arrow"></i>
+                                </a>
+                                <a href="blog/ftx-collapse.html" class="hero-post-entry">
+                                    <img src="blog/assets/images/ftx-collapse/thumbnail.jpg" alt="FTX Collapse"
+                                        class="hero-post-thumb">
+                                    <div class="hero-post-info">
+                                        <span class="hero-post-title">FTX's Financial Collapse: Ishikawa Diagram
+                                            Study</span>
+                                        <span class="hero-post-meta"><span class="hero-post-date">Mar 26, 2026</span> ·
+                                            <span class="hero-post-cat">Write-up</span></span>
+                                    </div>
+                                    <i class="fas fa-chevron-right hero-post-arrow"></i>
+                                </a>
+                                <a href="blog/cve-2026-2441.html" class="hero-post-entry">
+                                    <img src="blog/assets/images/cve-2026-2441/thumbnail.png" alt="CVE-2026-2441"
+                                        class="hero-post-thumb">
+                                    <div class="hero-post-info">
+                                        <span class="hero-post-title">The CSS Trap: Chrome's First Zero-Day of
+                                            2026</span>
+                                        <span class="hero-post-meta"><span class="hero-post-date">Feb 25, 2026</span> ·
+                                            <span class="hero-post-cat">CVE Analysis</span></span>
+                                    </div>
+                                    <i class="fas fa-chevron-right hero-post-arrow"></i>
+                                </a>
+                                <a href="blog.html" class="hero-posts-viewall">
+                                    <span class="prompt">&gt;</span> View all posts <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- CTA Buttons -->
-                    <div class="hero-cta">
-                        <a href="#projects" class="btn btn-primary">
-                            <i class="fas fa-folder-open"></i> View Projects
-                        </a>
-                        <a href="assets/docs/NoorElahiAliShibly_CV.pdf" class="btn btn-secondary" download>
-                            <i class="fas fa-download"></i> Download CV
-                        </a>
+                    <!-- Always visible -->
+                    <div class="hero-persistent">
+                        <div class="hero-links">
+                            <a href="tel:+8801739339099" class="hero-link" title="Phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="mailto:contact@noorelahialishibly.com" class="hero-link" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/shibly6" target="_blank" rel="noopener noreferrer" class="hero-link"
+                                title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/Shibly6" target="_blank" rel="noopener noreferrer" class="hero-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <div class="hero-cta">
+                            <a href="#projects" class="btn btn-primary">
+                                <i class="fas fa-folder-open"></i> View Projects
+                            </a>
+                            <a href="assets/docs/NoorElahiAliShibly_CV.pdf" class="btn btn-secondary" download>
+                                <i class="fas fa-download"></i> Download CV
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- View indicator dots -->
+                    <div class="hero-view-nav" id="hero-view-nav">
+                        <button class="hero-dot active" data-view="intro" aria-label="Introduction"></button>
+                        <button class="hero-dot" data-view="posts" aria-label="Blog posts"></button>
                     </div>
                 </div>
             </div>
@@ -148,9 +199,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         ABOUT SECTION - Professional background
-         ============================================================ -->
+    <!-- About -->
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">
@@ -201,20 +250,6 @@
 
                 </div>
 
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">1,280+</span>
-                        <span class="stat-label">IPs Assessed</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">94%</span>
-                        <span class="stat-label">ML Model Accuracy</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">3.74</span>
-                        <span class="stat-label">CGPA</span>
-                    </div>
-                </div>
             </div>
 
             <!-- Education Subsection -->
@@ -243,9 +278,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         EXPERIENCE SECTION - Work history and training
-         ============================================================ -->
+    <!-- Experience -->
     <section id="experience" class="section section-alt">
         <div class="container">
             <h2 class="section-title">
@@ -318,9 +351,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         PROJECTS SECTION - Security projects and tools
-         ============================================================ -->
+    <!-- Projects -->
     <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">
@@ -335,7 +366,7 @@
                             <i class="fas fa-robot"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Shibly6/LiteRecon_AI" target="_blank" title="View on GitHub">
+                            <a href="https://github.com/Shibly6/LiteRecon_AI" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
@@ -366,7 +397,7 @@
                             <i class="fas fa-cloud"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Shibly6/IaC-Anomaly-Detection" target="_blank"
+                            <a href="https://github.com/Shibly6/IaC-Anomaly-Detection" target="_blank" rel="noopener noreferrer"
                                 title="View on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
@@ -398,7 +429,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Shibly6/TimerApp" target="_blank" title="View on GitHub">
+                            <a href="https://github.com/Shibly6/TimerApp" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
@@ -429,7 +460,7 @@
                             <i class="fas fa-film"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Shibly6/NoirTrim" target="_blank" title="View on GitHub">
+                            <a href="https://github.com/Shibly6/NoirTrim" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
@@ -460,7 +491,7 @@
                             <i class="fas fa-file-pdf"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Shibly6/ImageToPdfConverter" target="_blank"
+                            <a href="https://github.com/Shibly6/ImageToPdfConverter" target="_blank" rel="noopener noreferrer"
                                 title="View on GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
@@ -487,9 +518,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         SKILLS SECTION - Technical skills matrix
-         ============================================================ -->
+    <!-- Skills -->
     <section id="skills" class="section section-alt">
         <div class="container">
             <h2 class="section-title">
@@ -560,9 +589,7 @@
 
 
 
-    <!-- ============================================================
-         CONTACT SECTION
-         ============================================================ -->
+    <!-- Contact -->
     <section id="contact" class="section section-alt">
         <div class="container">
             <h2 class="section-title">
@@ -595,11 +622,11 @@
                                 <i class="fas fa-phone"></i>
                                 <span>+880 1739-339099</span>
                             </a>
-                            <a href="https://linkedin.com/in/shibly6" target="_blank" class="contact-link">
+                            <a href="https://linkedin.com/in/shibly6" target="_blank" rel="noopener noreferrer" class="contact-link">
                                 <i class="fab fa-linkedin"></i>
                                 <span>linkedin.com/in/shibly6</span>
                             </a>
-                            <a href="https://github.com/Shibly6" target="_blank" class="contact-link">
+                            <a href="https://github.com/Shibly6" target="_blank" rel="noopener noreferrer" class="contact-link">
                                 <i class="fab fa-github"></i>
                                 <span>github.com/Shibly6</span>
                             </a>
@@ -610,9 +637,7 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         FOOTER
-         ============================================================ -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p class="footer-text">
@@ -625,10 +650,6 @@
         </div>
     </footer>
 
-    <!-- ============================================================
-         JAVASCRIPT - Load at end for performance
-         ============================================================ -->
-    <script src="js/starfield.js"></script>
     <script src="js/main.js"></script>
 </body>
 
