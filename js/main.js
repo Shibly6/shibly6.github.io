@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         terminalWindow.addEventListener('mouseleave', function () {
             isPaused = false;
-            if (typingDone && !cycleTimer) scheduleCycle();
+            if (typingDone && !cycleTimer && !isSwitching) scheduleCycle();
         });
     }
 
@@ -243,17 +243,15 @@ document.addEventListener('DOMContentLoaded', function () {
         scheduleCycle();
     }
 
-    // ── Schedule next switch ──
     function scheduleCycle() {
         clearTimeout(cycleTimer);
-        var delay = currentView === 'intro' ? 3000 : 4000;
+        var delay = currentView === 'intro' ? 3000 : 5000;
         cycleTimer = setTimeout(function () {
             if (isPaused || !isHeroVisible || isSwitching) return;
             switchView(currentView === 'intro' ? 'posts' : 'intro');
         }, delay);
     }
 
-    // ── Switch view with glitch + fade animation ──
     function switchView(targetView) {
         if (isSwitching || targetView === currentView) return;
         isSwitching = true;
@@ -280,7 +278,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (targetView === 'posts') {
                 resetPosts();
                 targetEl.classList.add('active');
-                typeCommand(cmdText, cascadePosts);
+                typeCommand(cmdText, function() {
+                    cascadePosts();
+                    currentView = targetView;
+                    updateDots();
+                    isSwitching = false;
+                    // Reschedule only after command text is fully typed
+                    if (isHeroVisible && !isPaused) scheduleCycle();
+                });
             } else {
                 // Reset whoami elements for re-animation
                 if (typedWhoami) typedWhoami.textContent = '';
@@ -302,18 +307,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             } else {
                                 if (heroTitle) heroTitle.classList.add('revealed');
                                 if (heroSummary) heroSummary.classList.add('revealed');
+                                currentView = targetView;
+                                updateDots();
+                                isSwitching = false;
+                                // Reschedule only after name is fully typed and details revealed
+                                if (isHeroVisible && !isPaused) scheduleCycle();
                             }
                         })();
                     }, 200);
                 });
             }
-
-            currentView = targetView;
-            updateDots();
-            isSwitching = false;
-
-            // Always reschedule for continuous looping
-            if (isHeroVisible && !isPaused) scheduleCycle();
         }, 300);
     }
 
