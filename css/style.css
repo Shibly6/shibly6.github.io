@@ -744,7 +744,7 @@ strong {
 
 .about-image {
     float: left;
-    max-width: 250px;
+    max-width: 500px;
     margin: 0 var(--spacing-lg) var(--spacing-md) 0;
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -1309,7 +1309,7 @@ strong {
         width: 100%;
         max-width: 100%;
         margin: 0 0 var(--spacing-lg) 0;
-        border-radius: 0;
+        border-radius: var(--radius-md);
     }
 
     .hero-post-title {

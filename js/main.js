@@ -219,8 +219,41 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // (Scroll trigger removed – cycling is purely timer-based)
+    // ── Swipe & Scroll Navigation (Manual Trigger) ──
+    if (terminalWindow) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let lastWheelTime = 0;
 
+        terminalWindow.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        terminalWindow.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            if (Math.abs(touchEndX - touchStartX) > 40 && !isSwitching) {
+                var target = currentView === 'intro' ? 'posts' : 'intro';
+                clearTimeout(cycleTimer);
+                cycleTimer = null;
+                switchView(target);
+            }
+        }, {passive: true});
+
+        terminalWindow.addEventListener('wheel', function(e) {
+            if (isSwitching) return;
+            let now = new Date().getTime();
+            // 1.5s cooldown to prevent multiple triggers from a single long scroll
+            if (now - lastWheelTime < 1500) return; 
+            
+            if (Math.abs(e.deltaY) > 20 || Math.abs(e.deltaX) > 20) {
+                lastWheelTime = now;
+                var target = currentView === 'intro' ? 'posts' : 'intro';
+                clearTimeout(cycleTimer);
+                cycleTimer = null;
+                switchView(target);
+            }
+        }, {passive: true});
+    }
     // ── Visibility: pause cycling when hero is off-screen ──
     if (heroSection && 'IntersectionObserver' in window) {
         var heroObserver = new IntersectionObserver(function (entries) {
