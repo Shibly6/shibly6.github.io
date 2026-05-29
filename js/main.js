@@ -452,5 +452,163 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', handleNavbarScroll);
 
+    // ============================================================
+    // 7. BLOG IMAGE LIGHTBOX
+    // Opens blog images in a full-screen overlay
+    // ============================================================
+
+    const blogImages = document.querySelectorAll('.post-content img');
+    if (blogImages.length > 0) {
+        let currentZoom = 1;
+        let isDragging = false;
+        let startX = 0, startY = 0, currentX = 0, currentY = 0;
+
+        // Create lightbox elements
+        const lightboxOverlay = document.createElement('div');
+        lightboxOverlay.className = 'lightbox-overlay';
+        
+        const lightboxClose = document.createElement('button');
+        lightboxClose.className = 'lightbox-close';
+        lightboxClose.innerHTML = '&times;';
+        lightboxClose.setAttribute('aria-label', 'Close image');
+
+        const lightboxControls = document.createElement('div');
+        lightboxControls.className = 'lightbox-controls';
+
+        const zoomOutBtn = document.createElement('button');
+        zoomOutBtn.className = 'lightbox-btn';
+        zoomOutBtn.innerHTML = '<i class="fas fa-search-minus"></i>';
+        zoomOutBtn.setAttribute('aria-label', 'Zoom Out');
+
+        const zoomIndicator = document.createElement('span');
+        zoomIndicator.className = 'lightbox-zoom-indicator';
+        zoomIndicator.innerText = '100%';
+
+        const zoomInBtn = document.createElement('button');
+        zoomInBtn.className = 'lightbox-btn';
+        zoomInBtn.innerHTML = '<i class="fas fa-search-plus"></i>';
+        zoomInBtn.setAttribute('aria-label', 'Zoom In');
+
+        lightboxControls.appendChild(zoomOutBtn);
+        lightboxControls.appendChild(zoomIndicator);
+        lightboxControls.appendChild(zoomInBtn);
+        
+        const lightboxImage = document.createElement('img');
+        lightboxImage.className = 'lightbox-image';
+        
+        lightboxOverlay.appendChild(lightboxControls);
+        lightboxOverlay.appendChild(lightboxClose);
+        lightboxOverlay.appendChild(lightboxImage);
+        document.body.appendChild(lightboxOverlay);
+
+        function applyZoomAndPan(smooth = true) {
+            zoomIndicator.innerText = Math.round(currentZoom * 100) + '%';
+            if (currentZoom <= 1) {
+                currentX = 0;
+                currentY = 0;
+                lightboxImage.style.cursor = 'default';
+            } else {
+                lightboxImage.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+            lightboxImage.style.transition = smooth ? 'transform 0.3s ease' : 'none';
+            lightboxImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoom})`;
+        }
+        
+        zoomInBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent closing the lightbox
+            if (currentZoom < 4) {
+                currentZoom += 0.25;
+                applyZoomAndPan(true);
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentZoom > 0.5) {
+                currentZoom -= 0.25;
+                applyZoomAndPan(true);
+            }
+        });
+
+        // Panning Logic
+        function onDragStart(e) {
+            if (currentZoom <= 1) return;
+            e.preventDefault();
+            isDragging = true;
+            const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            startX = clientX - currentX;
+            startY = clientY - currentY;
+            applyZoomAndPan(false);
+        }
+
+        function onDragMove(e) {
+            if (!isDragging || currentZoom <= 1) return;
+            e.preventDefault();
+            const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
+            currentX = clientX - startX;
+            currentY = clientY - startY;
+            applyZoomAndPan(false);
+        }
+
+        function onDragEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            applyZoomAndPan(true);
+        }
+
+        lightboxImage.addEventListener('mousedown', onDragStart);
+        window.addEventListener('mousemove', onDragMove);
+        window.addEventListener('mouseup', onDragEnd);
+
+        lightboxImage.addEventListener('touchstart', onDragStart, { passive: false });
+        window.addEventListener('touchmove', onDragMove, { passive: false });
+        window.addEventListener('touchend', onDragEnd);
+        
+        // Open lightbox on image click
+        blogImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImage.src = this.src;
+                lightboxImage.alt = this.alt;
+                currentZoom = 1;
+                currentX = 0;
+                currentY = 0;
+                zoomIndicator.innerText = '100%';
+                lightboxImage.style.transition = '';
+                lightboxImage.style.transform = ''; // Let CSS handle the open animation
+                lightboxImage.style.cursor = 'default';
+                lightboxOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+        });
+        
+        // Close lightbox function
+        const closeLightbox = () => {
+            lightboxOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            setTimeout(() => {
+                lightboxImage.src = ''; // Clear source after animation
+            }, 300);
+        };
+        
+        // Close on button click
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // Close on background click
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === lightboxOverlay) {
+                closeLightbox();
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
+
 });
 

@@ -586,3 +586,123 @@
 .tag {
     transition: all var(--transition-fast);
 }
+
+/* Lightbox Styles for Blog Images */
+.post-content img {
+    cursor: pointer;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.post-content img:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+}
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(13, 13, 13, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-overlay.active .lightbox-image {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--text-primary);
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    line-height: 1;
+    z-index: 10000;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-close:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.lightbox-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-md);
+    z-index: 10000;
+}
+
+.lightbox-btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.lightbox-zoom-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    min-width: 60px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(5px);
+}
