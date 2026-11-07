@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="What is the Exponential Time Hypothesis, and what does a new subexponential 3-SAT algorithm change? A simple breakdown, and why RSA and AES stay safe.">
+    <meta name="keywords"
+        content="3-SAT, k-SAT, Exponential Time Hypothesis, ETH, subexponential time, Boolean satisfiability, tensor network contraction, Hermite interpolation, galactic algorithm, P vs NP, lower bounds, cryptography, RSA, AES, theoretical computer science, cybersecurity for beginners">
+    <title>3-SAT to Tensor Networks: Cyber Snob - 2 | Noor Elahi Ali Shibly</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="3-SAT to Tensor Networks: Cyber Snob - 2">
+    <meta property="og:description"
+        content="For 27 years, ETH said 3-SAT needs exponential time. A new algorithm claims otherwise. Here is a simple breakdown using a control board full of switches, and why your passwords are still safe today.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://noorelahialishibly.com/blog/3-SAT-to-Tensor-Networks.html">
+    <meta property="og:image"
+        content="https://noorelahialishibly.com/blog/assets/images/3-SAT-to-Tensor-Networks/thumbnail.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+
+    <!-- Structured Data (Schema.org) for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "3-SAT to Tensor Networks: Cyber Snob - 2",
+            "image": [
+                "https://noorelahialishibly.com/blog/assets/images/3-SAT-to-Tensor-Networks/thumbnail.jpg"
+            ],
+            "datePublished": "2026-11-07T00:00:00+06:00",
+            "dateModified": "2026-11-07T00:00:00+06:00",
+            "author": [{
+                "@type": "Person",
+                "name": "Noor Elahi Ali Shibly",
+                "url": "https://noorelahialishibly.com/index.html"
+            }],
+            "keywords": "3-SAT, k-SAT, Exponential Time Hypothesis, ETH, subexponential time, Boolean satisfiability, tensor network contraction, Hermite interpolation, galactic algorithm, P vs NP, lower bounds, cryptography, RSA, AES, theoretical computer science, cybersecurity for beginners",
+            "description": "An introductory breakdown of the Exponential Time Hypothesis (ETH) and a new deterministic algorithm that solves and counts k-SAT solutions in subexponential time. Explains what 3-SAT is using a control-board-of-switches analogy, why ETH was assumed true for 27 years, and how the new algorithm replaces brute-force search with algebraic methods such as Hermite interpolation and tensor network contraction. Clarifies that this result does not solve P vs NP, does not directly break RSA or AES, and is a galactic algorithm that only wins on astronomically large inputs. Ends with a look at how AI may be changing the theoretical foundations of computer science."
+        }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZE0S2SR2D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YZE0S2SR2D');
+    </script>
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <style>
+        /* Inline equations (MathML): inherit the text color, so they stay readable in any theme */
+        math { font-size: 1.1em; white-space: nowrap; }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-bracket">[</span>
+                <span class="logo-text">Noor Elahi Ali Shibly</span>
+                <span class="logo-bracket">]</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../index.html#contact" class="nav-link nav-cta">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="post-header">
+        <div class="container">
+            <div class="post-meta">
+                <span class="blog-category writeup">Write-up</span>
+                <span class="blog-date"><i class="fas fa-calendar"></i> Nov 7, 2026</span>
+                <span class="blog-date"><i class="fas fa-clock"></i> 4 min read</span>
+            </div>
+            <h1 class="post-title">3-SAT to Tensor Networks: Cyber Snob - 2</h1>
+            <div class="post-tags">
+                <span class="tag">ETH</span>
+                <span class="tag">3-SAT</span>
+                <span class="tag">Exponential Time Hypothesis</span>
+                <span class="tag">Tensor Networks</span>
+                <span class="tag">Theoretical Computer Science</span>
+                <span class="tag">Cryptography</span>
+                <span class="tag">P vs NP</span>
+                <span class="tag">Cybersecurity Basics</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="section">
+        <article class="post-content">
+
+            <p>
+                Python, C++, frameworks and databases belong to Applied Computer Science. Underneath it sits Theoretical Computer Science, which uses pen-and-paper reasoning to tell us what a computer can do and what it can never do. For cybersecurity, cryptography rests entirely on hard mathematical problems and assumptions from theory, such as prime factorization or the ETH. If the proofs say these problems are hard to solve, only then do we assume our passwords are safe.
+            </p>
+
+            <h2>What is the Exponential Time Hypothesis?</h2>
+
+            <p>
+                Anyway, in 1999 the scientists Russell Impagliazzo and Ramamohan Paturi put forward a hypothesis. Their Exponential Time Hypothesis (ETH) says that hard problems like 3-SAT need exponential time, <math aria-label="2 to the power omega of n"><msup><mn>2</mn><mrow><mi>Ω</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math>, for any algorithm, and that nobody can solve them in subexponential time. Keep in mind that it is only a hypothesis. It is a temporary proposal, offered as a possible explanation, and it has not been proved. In short, solving 3-SAT (or <math aria-label="k"><mi>k</mi></math>-SAT) needs at least exponential time, <math aria-label="2 to the power omega of n"><msup><mn>2</mn><mrow><mi>Ω</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math>, and no subexponential-time algorithm, <math aria-label="2 to the power little o of n"><msup><mn>2</mn><mrow><mi>o</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math>, can do it.
+            </p>
+
+            <figure>
+                <img src="assets/images/3-SAT-to-Tensor-Networks/image1.png" alt="Exponential Time Hypothesis (ETH) diagram">
+                <figcaption>Exponential Time Hypothesis (ETH)</figcaption>
+            </figure>
+
+            <h2>The Control Board Analogy: What is 3-SAT?</h2>
+
+            <p>
+                Let me make this a bit simpler. Imagine a big control board with <math aria-label="n"><mi>n</mi></math> Boolean variables (switches), and each one can be True (on) or False (off). You are given a set of rules, called clauses. Each rule involves exactly 3 switches and says that at least one of them must be True. To start the system, you have to set the switches so that every rule is satisfied at the same time. That is the 3-SAT (3-Satisfiability) problem. With only 3 switches there are <math aria-label="2 cubed equals 8"><msup><mn>2</mn><mrow><mn>3</mn></mrow></msup><mo>=</mo><mn>8</mn></math> combinations. With <math aria-label="n equals 100"><mi>n</mi><mo>=</mo><mn>100</mn></math> switches there are <math aria-label="2 to the power 100"><msup><mn>2</mn><mrow><mn>100</mn></mrow></msup></math> combinations, and checking them one by one (brute force) would take an ordinary computer tens of trillions of years.
+            </p>
+
+            <h2>Why ETH Mattered for 27 Years</h2>
+
+            <p>
+                So no matter how many modern algorithms we build, 3-SAT should get exponentially slower as the number of variables (<math aria-label="n"><mi>n</mi></math>) grows. In math terms, it needs at least exponential time, <math aria-label="2 to the power omega of n"><msup><mn>2</mn><mrow><mi>Ω</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math> (for example <math aria-label="2 to the power 0.1 n"><msup><mn>2</mn><mrow><mn>0.1</mn><mi>n</mi></mrow></msup></math> or <math aria-label="1.3 to the power n"><msup><mn>1.3</mn><mrow><mi>n</mi></mrow></msup></math>), and an algorithm with subexponential time (for example <math aria-label="2 to the power little o of n"><msup><mn>2</mn><mrow><mi>o</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math> or <math aria-label="2 to the power square root of n"><msup><mn>2</mn><mrow><msqrt><mi>n</mi></msqrt></mrow></msup></math>) should be impossible to build in practice. For the last 27 years ETH has served as a foundation of Theoretical Computer Science. More than 800 research papers assumed it was true in order to prove lower bounds for different algorithms.
+            </p>
+
+            <h2>The New Algorithm: Subexponential 3-SAT</h2>
+
+            <p>
+                In October 2026, researchers at OpenAI showed that this core assumption of ETH is wrong. They built a deterministic algorithm that solves 3-SAT and any <math aria-label="k"><mi>k</mi></math>-SAT problem, and also counts the exact number of solutions, in subexponential time. The running time is <math aria-label="2 to the power big O of n over square root of log n"><msup><mn>2</mn><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>/</mo><msqrt><mi mathvariant="normal">log</mi><mo>&#x2061;</mo><mspace width="0.2em"></mspace><mi>n</mi></msqrt><mo>)</mo></mrow></msup></math>. Since <math aria-label="2 to the power big O of n over square root of log n"><msup><mn>2</mn><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>/</mo><msqrt><mi mathvariant="normal">log</mi><mo>&#x2061;</mo><mspace width="0.2em"></mspace><mi>n</mi></msqrt><mo>)</mo></mrow></msup></math> falls under <math aria-label="2 to the power little o of n"><msup><mn>2</mn><mrow><mi>o</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math> (subexponential time), it directly refutes the main condition of ETH, <math aria-label="2 to the power omega of n"><msup><mn>2</mn><mrow><mi>Ω</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup></math>. Until now, researchers checked the combinations one after another (search). The new algorithm turns the problem into algebraic equations and counts the solutions with algebraic methods such as Hermite interpolation and tensor network contraction.
+            </p>
+
+            <h3>From Brute Force to Algebra</h3>
+
+            <p>
+                Before, we had to flip the switches on and off one by one (search or brute force) to see whether every rule was satisfied. With the new method, we can find the answer by adding up the possible values of all the switches inside one huge polynomial equation. On the old board, changing one switch spread its effect to the other switches across the whole board. Now the board is split into small independent groups of variables, and from each group we only take a few short linear summaries (shared linear summaries, or measurements).
+            </p>
+
+            <h2>Does This Break Your Passwords?</h2>
+
+            <p>
+                This new research does not solve P vs NP. The RSA and AES encryption we use do not depend directly on 3-SAT, so your passwords cannot be hacked today because of it. In theory terms, the new algorithm can be called a "galactic algorithm". It only beats ordinary brute force when the input is astronomically large.
+            </p>
+
+            <h2>AI and the Future of Theoretical Computer Science</h2>
+
+            <p>
+                Some AI geeks say a human did not do this proof alone. An advanced AI did. AI has started to change the theoretical foundations of computer science, the basic rules of math under it. The AI that breaks a theoretical hypothesis today could find a new shortcut tomorrow for breaking prime factorization in applied cryptography.
+            </p>
+
+
+            <!-- Post Navigation -->
+            <nav class="post-nav">
+                <a href="../blog.html">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                <a href="CVE-vs-CVSS.html">
+                    Next Post <i class="fas fa-arrow-right"></i>
+                </a>
+            </nav>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="comment">// </span>
+                &copy; 2026 Noor Elahi Ali Shibly. Built with
+                <i class="fas fa-heart" style="color: var(--accent);"></i>
+                and caffeine.
+            </p>
+            <p class="footer-note">Securing systems, one vulnerability at a time.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
